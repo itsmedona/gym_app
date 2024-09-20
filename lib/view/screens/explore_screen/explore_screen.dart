@@ -13,11 +13,11 @@ class ExploreScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Best Quarantine Workout', style: TextStyle(fontSize: 22)),
-            SizedBox(height: 10),
-            WorkoutRecommendationCard(), // Custom widget for workout recommendation
-            SizedBox(height: 20),
+            SizedBox(height: 15),
+            WorkoutRecommendationCard(),
+            SizedBox(height: 25),
             Text('Challenge', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -27,6 +27,46 @@ class ExploreScreen extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChallengeButton extends StatelessWidget {
+  final String title;
+
+  ChallengeButton({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChallengeDetailScreen(title: title)),
+          );
+        },
+        child: Container(
+          padding: EdgeInsets.all(16),
+          margin:
+              EdgeInsets.symmetric(horizontal: 8), // Adding margin for spacing
+          decoration: BoxDecoration(
+            color: Colors.greenAccent,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: [
+              Icon(Icons.fitness_center, size: 40),
+              SizedBox(height: 10),
+              Text(
+                title,
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -63,7 +103,7 @@ class WorkoutRecommendationCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 8), // Increased the spacing for consistency
                 Text('Duration: 30 min'),
                 SizedBox(height: 5),
                 Text('Calories Burned: 300 kcal'),
@@ -71,42 +111,6 @@ class WorkoutRecommendationCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ChallengeButton extends StatelessWidget {
-  final String title;
-
-  ChallengeButton({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ChallengeDetailScreen(title: title)),
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.greenAccent,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Icon(Icons.fitness_center, size: 40),
-            SizedBox(height: 10),
-            Text(
-              title,
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
       ),
     );
   }

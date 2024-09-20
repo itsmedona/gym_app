@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 const num FIGMA_DESIGN_WIDTH = 390;
@@ -72,3 +72,4 @@ class SizeUtils {
     deviceType = DeviceType.mobile;
   }
 }
+*/

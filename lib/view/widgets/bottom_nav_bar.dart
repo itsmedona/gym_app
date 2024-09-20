@@ -24,15 +24,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex], // Display the selected screen
+      body: screens[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
-        index: _selectedIndex, // Set the selected index
-        backgroundColor:
-            Colors.transparent, // Background color behind the navigation bar
-        color: Colors.green, // Bar color
-        buttonBackgroundColor: Colors.white, // Button (icon) background color
-        animationDuration: Duration(milliseconds: 300), // Animation speed
+        index: _selectedIndex,
+        backgroundColor: Colors.transparent,
+        color: Colors.green,
+        buttonBackgroundColor: Colors.white,
+        animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
