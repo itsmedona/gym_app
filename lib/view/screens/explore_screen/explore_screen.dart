@@ -45,7 +45,7 @@ class WorkoutRecommendationCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             child: Image.asset(
-              'assets/workout_image.jpg', // Replace with actual image
+              'assets/images/workout.png',
               height: 150,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -75,6 +75,7 @@ class WorkoutRecommendationCard extends StatelessWidget {
     );
   }
 }
+
 class ChallengeButton extends StatelessWidget {
   final String title;
 
@@ -84,10 +85,10 @@ class ChallengeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Define your navigation here or perform an action
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChallengeDetailScreen(title: title)),
+          MaterialPageRoute(
+              builder: (context) => ChallengeDetailScreen(title: title)),
         );
       },
       child: Container(
@@ -98,7 +99,7 @@ class ChallengeButton extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(Icons.fitness_center, size: 40), // Replace with an appropriate icon
+            Icon(Icons.fitness_center, size: 40),
             SizedBox(height: 10),
             Text(
               title,
@@ -110,6 +111,7 @@ class ChallengeButton extends StatelessWidget {
     );
   }
 }
+
 class ChallengeDetailScreen extends StatelessWidget {
   final String title;
 

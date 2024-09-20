@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app_sample/view/screens/home_screen/home_screen.dart';
+import 'package:gym_app_sample/view/widgets/bottom_nav_bar.dart';
 
 class OnboardingScreen extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class OnboardingScreen extends StatelessWidget {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/onboarding_image.jpg', // Replace with actual image
+              'assets/images/onboarding.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -27,13 +27,14 @@ class OnboardingScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 6, 5, 5),
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'There is no instant way to a healthy life',
-                  style: TextStyle(color: Colors.white),
+                  style:
+                      TextStyle(color: const Color.fromARGB(255, 80, 57, 57)),
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
@@ -41,7 +42,7 @@ class OnboardingScreen extends StatelessWidget {
                     // Navigate to HomeScreen
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => BottomNavBar()),
                     );
                   },
                   child: Text('Get Started'),

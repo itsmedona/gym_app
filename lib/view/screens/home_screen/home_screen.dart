@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             SizedBox(height: 40),
             Text(
-              'Good Morning 👋\nPramuditya Uzumaki',
+              'Good Morning \nPramuditya Uzumaki',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             // Today's Plan
             Text('Today Plan', style: TextStyle(fontSize: 18)),
             SizedBox(height: 10),
-            TodayPlanWidget(), // Another custom widget for today's plan
+            TodayPlanWidget(), // custom widget for today's plan
           ],
         ),
       ),
@@ -44,8 +44,8 @@ class WorkoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150, // Adjust the width of each workout card
-      margin: EdgeInsets.only(right: 10), // Space between cards
+      width: 150,
+      margin: EdgeInsets.only(right: 10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -57,7 +57,7 @@ class WorkoutCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.asset(
-                'assets/workout_image.jpg', // Replace with actual image path
+                'assets/images/workout.png',
                 height: 80,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -94,19 +94,22 @@ class TodayPlanWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 10),
         PlanItem(
+          image: 'assets/images/pushup.png',
           title: 'Push Up',
           description: '100 Push Ups a day',
           level: 'Intermediate',
         ),
-        SizedBox(height: 10),
         PlanItem(
+          image: 'assets/images/situp.png',
           title: 'Sit Up',
           description: '20 Sit Ups a day',
           level: 'Beginner',
         ),
         SizedBox(height: 10),
         PlanItem(
+          image: 'assets/images/knee_pushup.png',
           title: 'Knee Push Up',
           description: '15 Knee Push Ups a day',
           level: 'Beginner',
@@ -117,12 +120,16 @@ class TodayPlanWidget extends StatelessWidget {
 }
 
 class PlanItem extends StatelessWidget {
+  final String image;
   final String title;
   final String description;
   final String level;
 
   PlanItem(
-      {required this.title, required this.description, required this.level});
+      {required this.image,
+      required this.title,
+      required this.description,
+      required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +139,7 @@ class PlanItem extends StatelessWidget {
       ),
       elevation: 3,
       child: ListTile(
+        leading: Image.asset(image, width: 50, height: 50, fit: BoxFit.cover),
         title: Text(
           title,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -146,8 +154,10 @@ class PlanItem extends StatelessWidget {
             ),
           ],
         ),
-        trailing: Icon(Icons.check_circle,
-            color: Colors.green), // An icon to show completion status
+        trailing: Icon(
+          Icons.check_circle,
+          color: Colors.green, // Icon to show completion status
+        ),
       ),
     );
   }

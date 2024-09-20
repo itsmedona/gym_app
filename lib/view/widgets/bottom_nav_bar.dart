@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the curved navigation bar package
 import 'package:gym_app_sample/view/screens/explore_screen/explore_screen.dart';
 import 'package:gym_app_sample/view/screens/home_screen/home_screen.dart';
-
 import 'package:gym_app_sample/view/screens/activity_screen/activity_screen.dart';
 import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
 
@@ -14,45 +14,50 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   // List of Screens for each tab
-  final List<Widget> _screens = [
+  final List<Widget> screens = [
     HomeScreen(), // Home tab
     ExploreScreen(), // Explore tab
     ActivityScreen(), // Activity tab
     WorkoutScreen(), // Workout tab
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex], // Display the selected screen
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex, // Set the selected index
-        onTap: _onItemTapped, // Change the selected index on tap
-        type: BottomNavigationBarType.fixed, // Ensure icons don’t shift on tap
-        selectedItemColor: Colors.green, // Active tab color
-        unselectedItemColor: Colors.grey, // Inactive tab color
+      body: screens[_selectedIndex], // Display the selected screen
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 60,
+        index: _selectedIndex, // Set the selected index
+        backgroundColor:
+            Colors.transparent, // Background color behind the navigation bar
+        color: Colors.green, // Bar color
+        buttonBackgroundColor: Colors.white, // Button (icon) background color
+        animationDuration: Duration(milliseconds: 300), // Animation speed
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.black, // Icon color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
+          Icon(
+            Icons.explore,
+            size: 30,
+            color: Colors.black,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: 'Activity',
+          Icon(
+            Icons.bar_chart,
+            size: 30,
+            color: Colors.black,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center),
-            label: 'Workout',
+          Icon(
+            Icons.fitness_center,
+            size: 30,
+            color: Colors.black,
           ),
         ],
       ),
