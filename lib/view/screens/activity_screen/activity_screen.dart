@@ -82,7 +82,7 @@ class ActivityScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 16),
-                      Image.asset('assets/images/cycling_map.png',
+                      Image.asset('assets/images/cyclingmap.png',
                           width: 150, height: 150),
                     ],
                   ),

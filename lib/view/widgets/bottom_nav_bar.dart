@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the
 import 'package:gym_app_sample/view/screens/explore_screen/explore_screen.dart';
 import 'package:gym_app_sample/view/screens/home_screen/home_screen.dart';
 import 'package:gym_app_sample/view/screens/activity_screen/activity_screen.dart';
-import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
+//import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomeScreen(), // Home tab
     ExploreScreen(), // Explore tab
     ActivityScreen(), // Activity tab
-    WorkoutScreen(), // Workout tab
+    //WorkoutScreen(), // Workout tab
   ];
 
   @override
@@ -53,11 +53,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
             size: 30,
             color: Colors.black,
           ),
-          Icon(
+          /*Icon(
             Icons.fitness_center,
             size: 30,
             color: Colors.black,
-          ),
+          ),*/
         ],
       ),
     );

@@ -4,7 +4,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
+        // Wrap with SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             // Today's Plan
             Text('Today Plan', style: TextStyle(fontSize: 18)),
             SizedBox(height: 10),
-            TodayPlanWidget(), // custom widget for today's plan
+            TodayPlanWidget(), // Custom widget for today's plan
           ],
         ),
       ),
@@ -58,27 +59,29 @@ class WorkoutCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.asset(
                 'assets/images/workout.png',
-                height: 80,
+                height: 100,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Lower Body Training',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Lower Body Training',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5),
-                  Text('Duration: 30 min'),
-                  Text('300 kcal'),
-                ],
+                    SizedBox(height: 5),
+                    Text('Duration: 30 min'),
+                    Text('300 kcal'),
+                  ],
+                ),
               ),
             ),
           ],
@@ -125,11 +128,12 @@ class PlanItem extends StatelessWidget {
   final String description;
   final String level;
 
-  PlanItem(
-      {required this.image,
-      required this.title,
-      required this.description,
-      required this.level});
+  PlanItem({
+    required this.image,
+    required this.title,
+    required this.description,
+    required this.level,
+  });
 
   @override
   Widget build(BuildContext context) {
