@@ -5,7 +5,6 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Explore'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

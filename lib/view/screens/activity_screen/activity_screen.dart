@@ -186,7 +186,6 @@ class ActivityScreen extends StatelessWidget {
                   child: Text('Keep it Up!'),
                 ),
               ),
-
               SizedBox(height: 16),
 
               // Row of Sleep and Water

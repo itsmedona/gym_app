@@ -1,9 +1,9 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the curved navigation bar package
+import 'package:gym_app_sample/view/screens/activity_screen/activity_screen.dart';
 import 'package:gym_app_sample/view/screens/explore_screen/explore_screen.dart';
 import 'package:gym_app_sample/view/screens/home_screen/home_screen.dart';
-import 'package:gym_app_sample/view/screens/activity_screen/activity_screen.dart';
-//import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
+import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -11,54 +11,70 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
-  // List of Screens for each tab
-  final List<Widget> screens = [
-    HomeScreen(), // Home tab
-    ExploreScreen(), // Explore tab
-    ActivityScreen(), // Activity tab
-    //WorkoutScreen(), // Workout tab
-  ];
+  int currentIndex = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 60,
-        index: _selectedIndex,
-        backgroundColor: Colors.transparent,
-        color: Colors.green,
-        buttonBackgroundColor: Colors.white,
-        animationDuration: Duration(milliseconds: 300),
-        onTap: (index) {
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (index) {
           setState(() {
-            _selectedIndex = index;
+            currentIndex = index;
           });
         },
-        items: const [
-          Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.black, // Icon color
-          ),
-          Icon(
-            Icons.explore,
-            size: 30,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.bar_chart,
-            size: 30,
-            color: Colors.black,
-          ),
-          /*Icon(
-            Icons.fitness_center,
-            size: 30,
-            color: Colors.black,
-          ),*/
+        children: [
+          HomeScreen(), // First tab -> HomeScreen
+          ExploreScreen(), // Second tab -> ExploreScreen
+          ActivityScreen(), // Third tab -> ActivityScreen
+          WorkoutScreen(), // Fourth tab -> WorkoutScreen
         ],
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+        //borderRadius: BorderRadius.circular(35),
+        child: BottomNavyBar(
+          backgroundColor: Colors.black,
+          selectedIndex: currentIndex,
+          onItemSelected: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+            pageController.jumpToPage(index); // Switches to the respective page
+          },
+          items: [
+            BottomNavyBarItem(
+              icon: Icon(Icons.home, color: Colors.white),
+              title: Text('Home', selectionColor: Colors.black),
+              activeColor: Color.fromARGB(255, 167, 250, 42),
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.rocket),
+              title: Text('Explore'),
+              activeColor: Color.fromARGB(255, 167, 250, 42),
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              title: Text('Analytics'),
+              activeColor: Color.fromARGB(255, 167, 250, 42),
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile',),
+              activeColor: Color.fromARGB(255, 167, 250, 42),
+              inactiveColor: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
