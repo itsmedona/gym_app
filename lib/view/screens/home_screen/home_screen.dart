@@ -1,37 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        // Wrap with SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 40),
+            // Greeting Text
             Text(
               'Good Morning \nPramuditya Uzumaki',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            Text('Popular Workouts', style: TextStyle(fontSize: 18)),
+            //Search
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Search ...',
+                prefixIcon: Icon(Icons.search),
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 20),
+            // Popular Workouts Section
+            Text(
+              'Popular Workouts',
+              style:
+                  GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: 10),
-            // Horizontal list of workout cards
             Container(
-              height: 120,
+              height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: 4,
                 itemBuilder: (context, index) {
-                  return WorkoutCard(); // Custom widget for workout card
+                  return WorkoutCard();
                 },
               ),
             ),
             SizedBox(height: 20),
-            // Today's Plan
-            Text('Today Plan', style: TextStyle(fontSize: 18)),
+            // Today's Plan Section
+            Text(
+              'Today Plan',
+              style:
+                  GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.w900),
+            ),
             SizedBox(height: 10),
             TodayPlanWidget(), // Custom widget for today's plan
           ],
@@ -45,42 +71,75 @@ class WorkoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 315,
       margin: EdgeInsets.only(right: 10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         elevation: 3,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
+            // Image
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.asset(
                 'assets/images/workout.png',
-                height: 100,
+                height: 150,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Lower Body Training',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Text('Duration: 30 min'),
-                    Text('300 kcal'),
-                  ],
+
+            // Text over the image
+            Positioned(
+              left: 8,
+              top: 8,
+              child: Text(
+                'Lower Body Training',
+                style: GoogleFonts.lato(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            // Duration rectangle
+            Positioned(
+              left: 8,
+              bottom: 40,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  'Duration: 30 min',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            // Kcal rectangle
+            Positioned(
+              left: 8,
+              bottom: 8,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  '300 kcal',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ),
@@ -103,12 +162,14 @@ class TodayPlanWidget extends StatelessWidget {
           title: 'Push Up',
           description: '100 Push Ups a day',
           level: 'Intermediate',
+          progress: 0.7, // 70% progress
         ),
         PlanItem(
           image: 'assets/images/situp.png',
           title: 'Sit Up',
           description: '20 Sit Ups a day',
           level: 'Beginner',
+          progress: 0.4, // 40% progress
         ),
         SizedBox(height: 10),
         PlanItem(
@@ -116,6 +177,7 @@ class TodayPlanWidget extends StatelessWidget {
           title: 'Knee Push Up',
           description: '15 Knee Push Ups a day',
           level: 'Beginner',
+          progress: 0.2, // 20% progress
         ),
       ],
     );
@@ -127,12 +189,14 @@ class PlanItem extends StatelessWidget {
   final String title;
   final String description;
   final String level;
+  final double progress;
 
   PlanItem({
     required this.image,
     required this.title,
     required this.description,
     required this.level,
+    required this.progress,
   });
 
   @override
@@ -142,26 +206,73 @@ class PlanItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 3,
-      child: ListTile(
-        leading: Image.asset(image, width: 50, height: 50, fit: BoxFit.cover),
-        title: Text(
-          title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(description),
-            Text(
-              level,
-              style: TextStyle(color: Colors.grey),
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            height: 130,
+            child: Row(
+              children: [
+                Image.asset(
+                  image,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center, 
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        description,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 10),
+                      // Progress Bar
+                      LinearProgressIndicator(
+                        value: progress,
+                        backgroundColor: Colors.grey[300],
+                        color: Color.fromARGB(186, 146, 242, 44),
+                        minHeight: 8, // Height of the progress bar
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        trailing: Icon(
-          Icons.check_circle,
-          color: Colors.green, // Icon to show completion status
-        ),
+          ),
+
+          // Level Container in the top-right corner
+          Positioned(
+            right: 10,
+            top: 10,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Text(
+                level,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
