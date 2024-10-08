@@ -20,7 +20,7 @@ class ActivityScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('July 2024', style: TextStyle(fontSize: 18)),
-                    SizedBox(width: 16),
+                    SizedBox(width: 10),
                     CalendarButton(day: 'S', number: '10'),
                     CalendarButton(day: 'M', number: '11'),
                     CalendarButton(day: 'T', number: '18'),
@@ -31,9 +31,7 @@ class ActivityScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               SizedBox(height: 16),
-
               // Active Calories
               Padding(
                 padding: const EdgeInsets.all(8.0),

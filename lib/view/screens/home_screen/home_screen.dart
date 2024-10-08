@@ -98,7 +98,7 @@ class WorkoutCard extends StatelessWidget {
               child: Text(
                 'Lower Body Training',
                 style: GoogleFonts.lato(
-                  fontSize: 16,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -223,7 +223,7 @@ class PlanItem extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center, 
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         title,
