@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gym_app_sample/view/screens/activity_screen/activity_screen.dart';
 import 'package:gym_app_sample/view/screens/explore_screen/explore_screen.dart';
 import 'package:gym_app_sample/view/screens/home_screen/home_screen.dart';
-import 'package:gym_app_sample/view/screens/workout_screen/workout_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -28,7 +27,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           HomeScreen(), // First tab -> HomeScreen
           ExploreScreen(), // Second tab -> ExploreScreen
           ActivityScreen(), // Third tab -> ActivityScreen
-          WorkoutScreen(), // Fourth tab -> WorkoutScreen
         ],
       ),
       bottomNavigationBar: ClipRRect(
@@ -64,12 +62,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
             BottomNavyBarItem(
               icon: Icon(Icons.analytics_outlined),
               title: Text('Analytics'),
-              activeColor: Color.fromARGB(255, 167, 250, 42),
-              inactiveColor: Colors.white,
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile',),
               activeColor: Color.fromARGB(255, 167, 250, 42),
               inactiveColor: Colors.white,
             ),

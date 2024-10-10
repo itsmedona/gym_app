@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym_app_sample/view/screens/home_screen/widgets/workout_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -71,84 +72,93 @@ class HomeScreen extends StatelessWidget {
 class WorkoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 315,
-      margin: EdgeInsets.only(right: 10),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        elevation: 3,
-        child: Stack(
-          children: [
-            // Image
-            ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-              child: Image.asset(
-                'assets/images/workout.png',
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            // Text over the image
-            Positioned(
-              left: 8,
-              top: 8,
-              child: Text(
-                'Lower Body Training',
-                style: GoogleFonts.lato(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+    return InkWell(
+      // Wrapping the WorkoutCard with InkWell
+      onDoubleTap: () {
+        // Navigate to WorkoutScreen when double tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WorkoutScreen()),
+        );
+      },
+      child: Container(
+        width: 315,
+        margin: EdgeInsets.only(right: 10),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 3,
+          child: Stack(
+            children: [
+              // Image
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                child: Image.asset(
+                  'assets/images/workout.png',
+                  height: 150,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            // Duration rectangle
-            Positioned(
-              left: 8,
-              bottom: 40,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.black54,
-                  borderRadius: BorderRadius.circular(5),
-                ),
+              // Text over the image
+              Positioned(
+                left: 8,
+                top: 8,
                 child: Text(
-                  'Duration: 30 min',
-                  style: TextStyle(
+                  'Lower Body Training',
+                  style: GoogleFonts.lato(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 12,
                   ),
                 ),
               ),
-            ),
-            // Kcal rectangle
-            Positioned(
-              left: 8,
-              bottom: 8,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.black54,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  '300 kcal',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
+              // Duration rectangle
+              Positioned(
+                left: 8,
+                bottom: 40,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    'Duration: 30 min',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              // Kcal rectangle
+              Positioned(
+                left: 8,
+                bottom: 8,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    '300 kcal',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
 
 class TodayPlanWidget extends StatelessWidget {
   @override
