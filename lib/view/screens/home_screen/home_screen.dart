@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,6 @@ class WorkoutCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-
             // Text over the image
             Positioned(
               left: 8,
@@ -104,7 +104,6 @@ class WorkoutCard extends StatelessWidget {
                 ),
               ),
             ),
-
             // Duration rectangle
             Positioned(
               left: 8,
@@ -149,6 +148,7 @@ class WorkoutCard extends StatelessWidget {
     );
   }
 }
+
 
 class TodayPlanWidget extends StatelessWidget {
   @override
