@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'widgets/plank_challenge_screen.dart';
 import 'widgets/sprint_challenge_screen.dart';
 import 'widgets/squat_challenge_screen.dart';
@@ -108,7 +107,6 @@ class ExploreScreen extends StatelessWidget {
                             image: challenges[index]['image']!,
                             color: color,
                             onTap: () {
-                              // Navigate to a different screen based on the challenge index
                               switch (index) {
                                 case 0:
                                   Navigator.push(
