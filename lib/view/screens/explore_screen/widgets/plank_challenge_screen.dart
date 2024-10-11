@@ -30,14 +30,17 @@ class PlankChallengeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              workoutItem("Forearm Plank", 'assets/images/build_biceps.png',
+              workoutItem("Forearm Plank", "assets/images/plank1.png",
                   "This is a core-strengthening exercise that involves balancing on your forearms and toes. Keep your body in a straight line from head to heels."),
               SizedBox(height: 20),
-              workoutItem("High Plank", 'assets/images/plank.png',
+              workoutItem("High Plank", "assets/images/plank2.png",
                   "The high plank is similar to a push-up position. It strengthens your shoulders, arms, and core while promoting overall body stability."),
-              SizedBox(height: 20), //same from the above
-              workoutItem("Forearm Plank", 'assets/images/build_biceps.png',
-                  "This is a core-strengthening exercise that involves balancing on your forearms and toes. Keep your body in a straight line from head to heels."),
+              SizedBox(height: 20),
+              workoutItem("Standard Plank", "assets/images/plank3.png",
+                  "Begin in a push-up position with hands directly under your shoulders, body straight from head to heels. Engage your core and hold the position."),
+              SizedBox(height: 20),
+              workoutItem("Dolphin Plank", "assets/images/plank4.png",
+                  "From a forearm plank, lift your hips towards the ceiling and then return to the plank position."),
             ],
           ),
         ),
