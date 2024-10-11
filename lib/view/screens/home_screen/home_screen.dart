@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_sample/view/screens/home_screen/widgets/workout_screen.dart';
 
-
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -74,8 +73,8 @@ class WorkoutCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       // Wrapping the WorkoutCard with InkWell
-      onDoubleTap: () {
-        // Navigate to WorkoutScreen when double tapped
+      onTap: () {
+        // Navigate to WorkoutScreen when tapped
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => WorkoutScreen()),
