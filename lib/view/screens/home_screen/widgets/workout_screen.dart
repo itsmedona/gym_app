@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gym_app_sample/view/screens/explore_screen/explore_screen.dart';
 
 class WorkoutScreen extends StatelessWidget {
   @override
@@ -91,7 +92,12 @@ class WorkoutScreen extends StatelessWidget {
                     backgroundColor: Colors.green,
                     padding: EdgeInsets.symmetric(vertical: 12.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ExploreScreen()));
+                  },
                   child: Text(
                     "Let's Workout",
                     style: GoogleFonts.lato(
