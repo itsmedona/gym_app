@@ -89,14 +89,14 @@ class ExploreScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     SizedBox(
-                      height: 180,
+                      height: 150,
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 1,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          childAspectRatio: 0.9,
                         ),
                         itemCount: challenges.length,
                         itemBuilder: (context, index) {
@@ -146,6 +146,7 @@ class ExploreScreen extends StatelessWidget {
                   ],
                 ),
               ),
+
               // Fast Warmup Section
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -342,29 +343,37 @@ class ChallengeCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: 4,
+        elevation: 6,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(20),
         ),
         color: color,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                image,
-                height: 60,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: 10),
-              Expanded(
+              Flexible(
                 child: Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    image,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
@@ -377,7 +386,7 @@ class ChallengeCard extends StatelessWidget {
 
 // Challenge Colors
 List<Color> challengeCardColors = [
-  Colors.redAccent,
-  Colors.blueAccent,
   Colors.greenAccent,
+  Colors.blueAccent,
+  Colors.redAccent,
 ];
