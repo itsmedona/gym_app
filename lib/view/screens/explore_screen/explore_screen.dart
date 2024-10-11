@@ -196,7 +196,7 @@ class ExploreScreen extends StatelessWidget {
 
 List<Map<String, String>> bestForYouWorkouts = [
   {
-    'title': 'Belly fat burner',
+    'title': 'Belly fat',
     'time': '10 min',
     'level': 'Beginner',
     'image': 'assets/images/belly_fat_burner.png',
@@ -216,7 +216,7 @@ List<Map<String, String>> bestForYouWorkouts = [
   {
     'title': 'Build Biceps',
     'time': '30 min',
-    'level': 'Intermediate',
+    'level': 'Inter',
     'image': 'assets/images/build_biceps.png',
   },
 ];
@@ -238,13 +238,13 @@ List<Map<String, String>> challenges = [
 
 List<Map<String, String>> warmupWorkouts = [
   {
-    'title': 'Leg Exercises',
+    'title': 'Leg Warm',
     'time': '10 min',
     'level': 'Beginner',
     'image': 'assets/images/leg_exercise.png',
   },
   {
-    'title': 'Backward Lunges',
+    'title': 'Backward warm',
     'time': '5 min',
     'level': 'Beginner',
     'image': 'assets/images/backward_lunges.png',
