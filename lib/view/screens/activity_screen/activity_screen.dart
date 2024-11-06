@@ -1,6 +1,34 @@
 import 'package:flutter/material.dart';
 
-class ActivityScreen extends StatelessWidget {
+class ActivityScreen extends StatefulWidget {
+  @override
+  _ActivityScreenState createState() => _ActivityScreenState();
+}
+
+class _ActivityScreenState extends State<ActivityScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..forward();
+
+    _animation = Tween<double>(begin: 0, end: 0.8).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -62,7 +90,7 @@ class ActivityScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-                // Active calories and cycling route section
+                // Active calories and animated training time section
                 Row(
                   children: [
                     Expanded(
@@ -83,23 +111,28 @@ class ActivityScreen extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.black87)),
                               SizedBox(height: 5),
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CircularProgressIndicator(
-                                    value: 0.8,
-                                    backgroundColor: Colors.grey[300],
-                                    valueColor: AlwaysStoppedAnimation(
-                                        Colors.purpleAccent),
-                                    strokeWidth: 8,
-                                  ),
-                                  Text(
-                                    '80%',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.purpleAccent),
-                                  ),
-                                ],
+                              AnimatedBuilder(
+                                animation: _animation,
+                                builder: (context, child) {
+                                  return Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      CircularProgressIndicator(
+                                        value: _animation.value,
+                                        backgroundColor: Colors.grey[300],
+                                        valueColor: AlwaysStoppedAnimation(
+                                            Colors.purpleAccent),
+                                        strokeWidth: 8,
+                                      ),
+                                      Text(
+                                        '${(_animation.value * 100).round()}%',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.purpleAccent),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -147,7 +180,6 @@ class ActivityScreen extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.pink[100],
                           gradient: LinearGradient(
                               colors: [Colors.pink[200]!, Colors.pink[100]!]),
                           borderRadius: BorderRadius.circular(15),
@@ -218,6 +250,11 @@ class ActivityScreen extends StatelessWidget {
                                     fontSize: 16, color: Colors.deepPurple)),
                             SizedBox(height: 10),
                             Icon(Icons.bedtime, color: Colors.purple),
+                            Text('7 hrs',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.deepPurple)),
                           ],
                         ),
                       ),
@@ -245,6 +282,52 @@ class ActivityScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                // Energy Level section
+                Text(
+                  'Energy Level',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple),
+                ),
+                SizedBox(height: 10),
+                LinearProgressIndicator(
+                  value: 0.65,
+                  backgroundColor: Colors.grey[300],
+                  color: Colors.yellowAccent,
+                  minHeight: 10,
+                ),
+                SizedBox(height: 20),
+                // Goals for Today section
+                Text(
+                  'Goals for Today',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple),
+                ),
+                SizedBox(height: 10),
+                Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.run_circle, color: Colors.green),
+                      title: Text("Run 5 km"),
+                      trailing: Icon(Icons.check_circle, color: Colors.green),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.restaurant, color: Colors.orange),
+                      title: Text("Stay under 2000 calories"),
+                      trailing: Icon(Icons.check_circle, color: Colors.green),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.water_drop, color: Colors.blue),
+                      title: Text("Drink 8 cups of water"),
+                      trailing: Icon(Icons.radio_button_unchecked,
+                          color: Colors.grey),
                     ),
                   ],
                 ),
